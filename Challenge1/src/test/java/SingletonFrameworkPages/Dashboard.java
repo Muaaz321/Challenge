@@ -34,6 +34,17 @@ public class Dashboard {
 	@FindBy(className = "product_sort_container")
 	WebElement sort;
 
+	@FindBy(xpath = "btn btn_primary btn_small btn_inventory")
+	WebElement AddCart;
+	
+	@FindBy(xpath = "//button[contains(text(),'Add to cart')][1]")
+	WebElement addCartselect;
+	
+	
+	@FindBy(xpath = "//div[@id='shopping_cart_container']")
+	WebElement Shoppicart;
+	
+	
 	public void menuClick() throws InterruptedException {
 
 			try {
@@ -65,10 +76,11 @@ public class Dashboard {
 	
 	public void HightoLow() {
 		
-		List<WebElement> allOptions = driver.findElements(By.xpath("//select[@class='product_sort_container']"));
+		List<WebElement> allOptions = driver.findElements
+				(By.xpath("//select[@class='product_sort_container']"));
         System.out.println(allOptions.size());
         
-        for(int i = 0; i<=allOptions.size()-1; i++) {
+        for(int i = 0; i<=allOptions.size(); i++) {
             
             if(allOptions.get(i).getText().contains("Price (high to low)")) {
                  
@@ -80,6 +92,57 @@ public class Dashboard {
         }
 		
 	}
+	
+	
+	public void selectProduct() {
+		
+		try {
+			addCartselect.click();
+			Thread.sleep(500);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public void clickShoppingCart() {
+		
+		try {
+			Shoppicart.click();
+			System.out.println("clicked shopping cart");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void selecttopTwoproducts() throws InterruptedException {
+		List<WebElement> allProducts = driver.findElements
+				(By.xpath("//button[@class='btn btn_primary btn_small btn_inventory']"));
+        
+		
+		String AddCart = "//button[@class='btn btn_primary btn_small btn_inventory'][1]";
+		
+		String beforeXpath = "//button[@class='btn btn_primary btn_small btn_inventory'][";
+		String afterXpath = "]";
+		
+		int count = allProducts.size();
+		
+		System.out.println("All produt add cart object " + allProducts.size());
+		
+		for(int i=1;i<=count;i++) {
+			String ActualXpath = beforeXpath+i+afterXpath;
+			WebElement element = driver.findElement(By.xpath(ActualXpath));
+			System.out.println(element.getText());
+			element.click();
+			
+		}
+		
+	}
+	
 	
 	
 }

@@ -14,8 +14,10 @@ import org.testng.annotations.Parameters;
 
 import SingletonFramework.Constant;
 import SingletonFramework.TestBase;
+import SingletonFrameworkPages.CheckOut;
 import SingletonFrameworkPages.Dashboard;
 import SingletonFrameworkPages.LoginPage;
+import SingletonFrameworkPages.YourInformation;
 
 
 public class Test {
@@ -39,6 +41,20 @@ public class Test {
 		sausedemoDashboad.menuClick();
 		sausedemoDashboad.resetClick();
 		sausedemoDashboad.HightoLow();
+		//sausedemoDashboad.selecttopTwoproducts();
+		sausedemoDashboad.selectProduct();
+		sausedemoDashboad.selectProduct();
+		sausedemoDashboad.clickShoppingCart();
+		CheckOut checkoutprocess = new CheckOut(TestBase.driver);
+		checkoutprocess.Clickcheckout();
+		
+		YourInformation information = new YourInformation(TestBase.driver);	
+		information.fillInformation("Muaaz", "Mohideen", "003");
+		
+		Thread.sleep(2000);
+		
+		//to do assertion , config
+		
 	}
 	
 
