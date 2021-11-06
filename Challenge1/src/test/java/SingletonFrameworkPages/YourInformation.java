@@ -8,14 +8,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class YourInformation {
 
 	WebDriver driver;
+	Select select;
 
-	public YourInformation(WebDriver driver) {
+	public YourInformation(WebDriver driver,Select select) {
 
 		this.driver = driver;
+		this.select = select;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -33,7 +36,7 @@ public class YourInformation {
 	@FindBy(id = "continue")
 	WebElement continueButton;
 	
-	public void fillInformation(String fname,String lname,String postalcode) throws InterruptedException {
+	public CheckOutOverview fillInformation(String fname,String lname,String postalcode) throws InterruptedException {
 
 			try {
 				firstname.sendKeys(fname);
@@ -45,6 +48,8 @@ public class YourInformation {
 				
 				e.printStackTrace();
 			}
+			
+			return new CheckOutOverview(driver, select);
 	    		
 	}
 	

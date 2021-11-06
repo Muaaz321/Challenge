@@ -10,12 +10,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class CheckOut {
+public class CheckOutOverview {
 
 	WebDriver driver;
 	Select select;
 
-	public CheckOut(WebDriver driver,Select select) {
+	public CheckOutOverview(WebDriver driver,Select select) {
 
 		this.driver = driver;
 		this.select = select;
@@ -24,21 +24,22 @@ public class CheckOut {
 
 
 
-	@FindBy(xpath = "//button[@class='btn btn_action btn_medium checkout_button']")
-	WebElement Checkout;
+	@FindBy(id = "finish")
+	WebElement Finish;
 	
 	
-	public YourInformation Clickcheckout() throws InterruptedException {
+	public CheckOutComplete clickFinish() throws InterruptedException {
 
 			try {
-				Checkout.click();
+				Finish.click();
 				Thread.sleep(5000);
 			} catch (Exception e) {
 				
 				e.printStackTrace();
 			}
+			
+			return new CheckOutComplete(driver,select);
 	    		
-			return new YourInformation(driver, select);
 	}
 	
 	

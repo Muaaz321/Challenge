@@ -1,21 +1,29 @@
 package SingletonFrameworkPages;
 
+import java.util.Properties;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 public class LoginPage {
 
 	WebDriver driver;
+	Select select;
 
-	public LoginPage(WebDriver driver) {
+	
+	public LoginPage(WebDriver driver,Select select) {
 
 		this.driver = driver;
+		this.select = select;
 		PageFactory.initElements(driver, this);
 	}
-
 
 
 	@FindBy(id ="user-name")
@@ -27,17 +35,17 @@ public class LoginPage {
 	@FindBy(id="login-button")
 	WebElement submit;
 
-	public void userLogin(String uname,String pword) throws InterruptedException {
+	public Dashboard userLogin(String uname,String pword) throws InterruptedException {
 
 			try {
 				username.sendKeys(uname);
 				password.sendKeys(pword);
 				submit.click();
-			} catch (Exception e) {
-				
+			} catch (Exception e) {				
 				e.printStackTrace();
 			}
-	    		
+			
+	    	return new Dashboard(driver, select);
 	}
 	
 }

@@ -5,7 +5,7 @@
     <classes>
       <class name="SingletonFrameworkTest.Test">
         <methods>
-          <include name="Login" invocation-numbers="0"/>
+          <include name="Login"/>
           <include name="setUp"/>
           <include name="tearDown"/>
         </methods>

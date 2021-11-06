@@ -1,6 +1,7 @@
 package SingletonFrameworkTest;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -8,6 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -15,6 +17,8 @@ import org.testng.annotations.Parameters;
 import SingletonFramework.Constant;
 import SingletonFramework.TestBase;
 import SingletonFrameworkPages.CheckOut;
+import SingletonFrameworkPages.CheckOutComplete;
+import SingletonFrameworkPages.CheckOutOverview;
 import SingletonFrameworkPages.Dashboard;
 import SingletonFrameworkPages.LoginPage;
 import SingletonFrameworkPages.YourInformation;
@@ -22,38 +26,57 @@ import SingletonFrameworkPages.YourInformation;
 
 public class Test {
 
-	
+	int Twice = 2;
 	
 	@BeforeClass
 	public void setUp() throws IOException {
 		TestBase.initialize();
-		System.out.println("IN INITIALIZATION");
+		System.out.println("*** Initializing RootecodeLabs Test Starts **** ");
 	}
 
 	
 	@org.testng.annotations.Test
-	@Parameters({"saucedemousername","saucedemopassword"})
-	public void Login(@Optional("")String username,@Optional("")String password) throws InterruptedException {
-		LoginPage Login = new LoginPage(TestBase.driver);
-		Login.userLogin(username, password);
+	@Parameters({"saucedemousername","saucedemopassword","saucedemofname","saucedemolname","saucedemozipcode"})
+	public void Login(@Optional("")String username,@Optional("")String password,
+			@Optional("")String firstname,@Optional("")String lastname,@Optional("")String zipcode) throws InterruptedException {
 		
-		Dashboard sausedemoDashboad = new Dashboard(TestBase.driver);
-		sausedemoDashboad.menuClick();
-		sausedemoDashboad.resetClick();
-		sausedemoDashboad.HightoLow();
-		//sausedemoDashboad.selecttopTwoproducts();
-		sausedemoDashboad.selectProduct();
-		sausedemoDashboad.selectProduct();
-		sausedemoDashboad.clickShoppingCart();
-		CheckOut checkoutprocess = new CheckOut(TestBase.driver);
-		checkoutprocess.Clickcheckout();
-		
-		YourInformation information = new YourInformation(TestBase.driver);	
-		information.fillInformation("Muaaz", "Mohideen", "003");
-		
-		Thread.sleep(2000);
-		
-		//to do assertion , config
+		try {
+			LoginPage Login = new LoginPage(TestBase.driver,TestBase.select);
+			Dashboard sausedemoDashboad = Login.userLogin(username, password);
+			
+			sausedemoDashboad.menuClick();
+			sausedemoDashboad.resetClick();
+			sausedemoDashboad.HightoLow();
+			
+			//sausedemoDashboad.selecttopTwoproducts();
+
+			for (int i = 0; i <= 2; i++) {
+				sausedemoDashboad.selectProduct();
+			}
+			
+					
+			CheckOut checkoutprocess =  sausedemoDashboad.clickShoppingCart();
+
+			YourInformation information = checkoutprocess.Clickcheckout();
+
+			CheckOutOverview overview = information.fillInformation(firstname, lastname, zipcode);
+			
+			CheckOutComplete complete =  overview.clickFinish();
+			
+			complete.checkThankyouMessage();
+			
+			Assert.assertTrue(true,"Test Case Passed");
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			Assert.assertTrue(false,"Test Case False");
+			e.printStackTrace();
+			e.getMessage();
+			e.getCause();
+			e.getStackTrace();
+		}
+        
+	
 		
 	}
 	
@@ -65,4 +88,8 @@ public class Test {
 		//TestBase.Close();
 		TestBase.Quit();
 	}
+	
+	
+	
+	
 }

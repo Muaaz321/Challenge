@@ -10,31 +10,27 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class TestBase {
 
 	public static WebDriver driver = null;
 	public static String browsername = "chrome";
-	
-	
-	public static Properties prop = new Properties();
+	public static Select select = null;	
 	
 	public static void initialize() throws IOException {
-		
-		InputStream input = new FileInputStream(System.getProperty("user.dir")+"//src//test//java//SingletonFramework//config.properties");
-		prop.load(input);
-		
-		System.out.println(System.getProperty("user.dir"));
-		System.out.println(prop.getProperty(browsername));
-		
 		
 		//Singleton pattern
 		if(driver == null) {
 			if(Constant.browsername.equalsIgnoreCase("chrome")) {
 				 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +"//Drivers//chromedriver.exe");
 				 driver = new ChromeDriver();
-				 System.out.println("DRIVER TRIGGERED");
-				  
+			  
 			}
 			else if(Constant.browsername.equalsIgnoreCase("firefox")) {
 				 System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") +"//Drivers//chromedriver.exe");
@@ -42,9 +38,10 @@ public class TestBase {
 			}
 		}
 		
+		
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Constant.Wait, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(Constant.Wait, TimeUnit.SECONDS);		
 		driver.manage().window().maximize();
 		
 		driver.get(Constant.url);
@@ -53,7 +50,7 @@ public class TestBase {
 	
 	
 	public static void Quit() {
-		System.out.println(" = = Quitting the browser = = ");
+		System.out.println(" **** Quitting the browser **** ");
 		driver.quit();
 		driver = null;
 	}

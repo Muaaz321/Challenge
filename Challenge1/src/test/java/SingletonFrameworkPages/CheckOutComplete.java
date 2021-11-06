@@ -9,40 +9,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
-public class CheckOut {
+import SingletonFramework.TestBase;
+
+public class CheckOutComplete {
 
 	WebDriver driver;
 	Select select;
 
-	public CheckOut(WebDriver driver,Select select) {
+	public CheckOutComplete(WebDriver driver,Select select) {
 
 		this.driver = driver;
 		this.select = select;
 		PageFactory.initElements(driver, this);
 	}
 
-
-
-	@FindBy(xpath = "//button[@class='btn btn_action btn_medium checkout_button']")
-	WebElement Checkout;
 	
 	
-	public YourInformation Clickcheckout() throws InterruptedException {
-
-			try {
-				Checkout.click();
-				Thread.sleep(5000);
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-			}
-	    		
-			return new YourInformation(driver, select);
+	public void checkThankyouMessage() {
+		Assert.assertEquals(driver.findElement(By.xpath("//*[@class='complete-header']")).
+				getText(), "THANK YOU FOR YOUR ORDER");
 	}
 	
 	
-
 	
 	
 }

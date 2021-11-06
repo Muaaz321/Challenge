@@ -4,6 +4,9 @@
   <test thread-count="5" name="Test">
    <parameter name="saucedemousername" value="standard_user"></parameter>
    <parameter name="saucedemopassword" value="secret_sauce"></parameter>
+   <parameter name="saucedemofname" value="Muaaz"></parameter>
+   <parameter name="saucedemolname" value="Mohideen"></parameter>
+   <parameter name="saucedemozipcode" value="00300"></parameter>
     <classes>
       <class name="SingletonFrameworkTest.Test"/>
     </classes>

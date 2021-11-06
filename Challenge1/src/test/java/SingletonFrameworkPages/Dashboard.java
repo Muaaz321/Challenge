@@ -8,14 +8,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class Dashboard {
 
 	WebDriver driver;
+	Select select;
 
-	public Dashboard(WebDriver driver) {
+	public Dashboard(WebDriver driver,Select select) {
 
 		this.driver = driver;
+		this.select = select;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -74,23 +77,18 @@ public class Dashboard {
 	}
 	
 	
-	public void HightoLow() {
+	public void HightoLow() throws InterruptedException {
 		
-		List<WebElement> allOptions = driver.findElements
-				(By.xpath("//select[@class='product_sort_container']"));
-        System.out.println(allOptions.size());
-        
-        for(int i = 0; i<=allOptions.size(); i++) {
-            
-            if(allOptions.get(i).getText().contains("Price (high to low)")) {
-                 
-                allOptions.get(i).click();
-                System.out.println("Success");
-                break;
-                 
-            }
-        }
-		
+		try {
+			select = new 
+					Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
+
+			select.selectByValue("hilo");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
 	}
 	
 	
@@ -107,7 +105,7 @@ public class Dashboard {
 	}
 	
 	
-	public void clickShoppingCart() {
+	public CheckOut clickShoppingCart() {
 		
 		try {
 			Shoppicart.click();
@@ -116,6 +114,8 @@ public class Dashboard {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return new CheckOut(driver, select);
 	}
 	
 	
