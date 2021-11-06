@@ -1,5 +1,10 @@
 package SingletonFramework;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -11,7 +16,17 @@ public class TestBase {
 	public static WebDriver driver = null;
 	public static String browsername = "chrome";
 	
-	public static void initialize() {
+	
+	public static Properties prop = new Properties();
+	
+	public static void initialize() throws IOException {
+		
+		InputStream input = new FileInputStream(System.getProperty("user.dir")+"//src//test//java//SingletonFramework//config.properties");
+		prop.load(input);
+		
+		System.out.println(System.getProperty("user.dir"));
+		System.out.println(prop.getProperty(browsername));
+		
 		
 		//Singleton pattern
 		if(driver == null) {

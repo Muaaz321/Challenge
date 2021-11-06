@@ -1,5 +1,7 @@
 package SingletonFrameworkTest;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -12,6 +14,7 @@ import org.testng.annotations.Parameters;
 
 import SingletonFramework.Constant;
 import SingletonFramework.TestBase;
+import SingletonFrameworkPages.Dashboard;
 import SingletonFrameworkPages.LoginPage;
 
 
@@ -20,48 +23,25 @@ public class Test {
 	
 	
 	@BeforeClass
-	public void setUp() {
+	public void setUp() throws IOException {
 		TestBase.initialize();
 		System.out.println("IN INITIALIZATION");
 	}
-	
-	
-	@org.testng.annotations.Test(priority = 1)
-	public void verifyOrangeHrmTitleTest() {
-		String title = TestBase.driver.getTitle();
-		System.out.println("Title is " + title);
-		
-	}
-	
-	
-	@org.testng.annotations.Test(priority = 1)
-	public void logoTest() {
-		Assert.assertEquals(TestBase.driver.findElement(By.id("divLogo")).isDisplayed(), true);
-		
-	}
-	
+
 	
 	@org.testng.annotations.Test
-	@Parameters({"orangeusername","orangepassword"})
-	public void Login(@Optional("Admin") String username,@Optional("admin123") String password) throws InterruptedException {
+	@Parameters({"saucedemousername","saucedemopassword"})
+	public void Login(@Optional("")String username,@Optional("")String password) throws InterruptedException {
 		LoginPage Login = new LoginPage(TestBase.driver);
 		Login.userLogin(username, password);
+		
+		Dashboard sausedemoDashboad = new Dashboard(TestBase.driver);
+		sausedemoDashboad.menuClick();
+		sausedemoDashboad.resetClick();
+		sausedemoDashboad.HightoLow();
 	}
 	
-	
-	@org.testng.annotations.Test(priority = 1)
-	@Parameters({"orangeusername","orangepassword"})
-	public void ApplyLeave(@Optional("Admin") String username,@Optional("admin123") String password) throws InterruptedException {
-		
-		LoginPage Login = new LoginPage(TestBase.driver);
-		Login.userLogin(username, password);
-		
-		String ApplyLeave = TestBase.driver.findElement(By.xpath("//*[text()='Apply Leave']")).getText().toString();
-		Assert.assertEquals(ApplyLeave, "Apply Leave");
-		
-		
-		}
-	
+
 	
 	
 	@AfterMethod

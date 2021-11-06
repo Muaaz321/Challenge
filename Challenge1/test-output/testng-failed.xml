@@ -5,10 +5,8 @@
     <classes>
       <class name="SingletonFrameworkTest.Test">
         <methods>
-          <include name="logoTest"/>
-          <include name="ApplyLeave" invocation-numbers="0"/>
+          <include name="Login"/>
           <include name="setUp"/>
-          <include name="verifyOrangeHrmTitleTest"/>
           <include name="tearDown"/>
         </methods>
       </class> <!-- SingletonFrameworkTest.Test -->

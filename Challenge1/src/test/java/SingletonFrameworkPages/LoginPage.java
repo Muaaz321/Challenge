@@ -18,13 +18,13 @@ public class LoginPage {
 
 
 
-	@FindBy(id ="txtUsername")
+	@FindBy(id ="user-name")
 	WebElement username;
 
-	@FindBy(id="txtPassword")
+	@FindBy(id="password")
 	WebElement password;
 
-	@FindBy(id="btnLogin")
+	@FindBy(id="login-button")
 	WebElement submit;
 
 	public void userLogin(String uname,String pword) throws InterruptedException {
