@@ -12,8 +12,6 @@ import org.openqa.selenium.support.ui.Select;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-import SingletonFramework.TestBase;
-
 public class LoginPage {
 
 	WebDriver driver;
@@ -27,8 +25,6 @@ public class LoginPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	//static final String ORusername = ObjectRepository.getProperty("username");
-	
 
 	@FindBy(id ="user-name")
 	WebElement username;
