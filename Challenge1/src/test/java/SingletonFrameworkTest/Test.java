@@ -23,6 +23,11 @@ import SingletonFrameworkPages.Dashboard;
 import SingletonFrameworkPages.LoginPage;
 import SingletonFrameworkPages.YourInformation;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class Test {
 
@@ -42,6 +47,7 @@ public class Test {
 		
 		try {
 			LoginPage Login = new LoginPage(TestBase.driver,TestBase.select);
+			
 			Dashboard sausedemoDashboad = Login.userLogin(username, password);
 			
 			sausedemoDashboad.menuClick();
