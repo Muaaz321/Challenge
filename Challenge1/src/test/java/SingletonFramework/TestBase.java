@@ -22,7 +22,6 @@ public class TestBase {
 	public static WebDriver driver = null;
 	public static String browsername = "chrome";
 	public static Select select = null;	
-	public static ExtentReports extent;
 	
 	public static void initialize() throws IOException {
 		
