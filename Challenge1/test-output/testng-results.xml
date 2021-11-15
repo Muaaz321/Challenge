@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-11-07T00:20:46 IST" name="Suite" finished-at="2021-11-07T00:21:15 IST" duration-ms="29022">
+  <suite started-at="2021-11-15T13:35:10 IST" name="Suite" finished-at="2021-11-15T13:35:16 IST" duration-ms="6298">
     <groups>
     </groups>
-    <test started-at="2021-11-07T00:20:46 IST" name="Test" finished-at="2021-11-07T00:21:15 IST" duration-ms="29022">
+    <test started-at="2021-11-15T13:35:10 IST" name="Test" finished-at="2021-11-15T13:35:16 IST" duration-ms="6298">
       <class name="SingletonFrameworkTest.Test">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:SingletonFrameworkTest.Test@446293d]" started-at="2021-11-07T00:20:46 IST" name="setUp" finished-at="2021-11-07T00:20:50 IST" duration-ms="4673" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:SingletonFrameworkTest.Test@446293d]" started-at="2021-11-15T13:35:10 IST" name="setUp" finished-at="2021-11-15T13:35:14 IST" duration-ms="4551" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="Login(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SingletonFrameworkTest.Test@446293d]" started-at="2021-11-07T00:20:50 IST" name="Login" finished-at="2021-11-07T00:21:14 IST" duration-ms="23578" status="PASS">
+        <test-method signature="Login(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:SingletonFrameworkTest.Test@446293d]" started-at="2021-11-15T13:35:14 IST" name="Login" finished-at="2021-11-15T13:35:15 IST" duration-ms="493" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -42,7 +42,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Login -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:SingletonFrameworkTest.Test@446293d]" started-at="2021-11-07T00:21:14 IST" name="tearDown" finished-at="2021-11-07T00:21:15 IST" duration-ms="716" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:SingletonFrameworkTest.Test@446293d]" started-at="2021-11-15T13:35:15 IST" name="tearDown" finished-at="2021-11-15T13:35:16 IST" duration-ms="1205" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

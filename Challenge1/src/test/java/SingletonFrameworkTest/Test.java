@@ -40,48 +40,42 @@ public class Test {
 	public void Login(@Optional("")String username,@Optional("")String password,
 			@Optional("")String firstname,@Optional("")String lastname,@Optional("")String zipcode) throws InterruptedException {
 		
-		try {
+//		try {
 			LoginPage Login = new LoginPage(TestBase.driver,TestBase.select);
 			Dashboard sausedemoDashboad = Login.userLogin(username, password);
 			
-			sausedemoDashboad.menuClick();
-			sausedemoDashboad.resetClick();
-			sausedemoDashboad.HightoLow();
-			
-			//sausedemoDashboad.selecttopTwoproducts();
-
-			for (int i = 0; i <= 2; i++) {
-				sausedemoDashboad.selectProduct();
-			}
-			
-					
-			CheckOut checkoutprocess =  sausedemoDashboad.clickShoppingCart();
-
-			YourInformation information = checkoutprocess.Clickcheckout();
-
-			CheckOutOverview overview = information.fillInformation(firstname, lastname, zipcode);
-			
-			CheckOutComplete complete =  overview.clickFinish();
-			
-			complete.checkThankyouMessage();
-			
-			Assert.assertTrue(true,"Test Case Passed");
-			
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			Assert.assertTrue(false,"Test Case False");
-			e.printStackTrace();
-			e.getMessage();
-			e.getCause();
-			e.getStackTrace();
-		}
-        
-	
-		
+//			sausedemoDashboad.menuClick();
+//			sausedemoDashboad.resetClick();
+//			sausedemoDashboad.HightoLow();
+//			
+//			//sausedemoDashboad.selecttopTwoproducts();
+//
+//			for (int i = 0; i <= 2; i++) {
+//				sausedemoDashboad.selectProduct();
+//			}
+//								
+//			CheckOut checkoutprocess =  sausedemoDashboad.clickShoppingCart();
+//
+//			YourInformation information = checkoutprocess.Clickcheckout();
+//
+//			CheckOutOverview overview = information.fillInformation(firstname, lastname, zipcode);
+//			
+//			CheckOutComplete complete =  overview.clickFinish();
+//			
+//			complete.checkThankyouMessage();
+//			
+//			Assert.assertTrue(true,"Test Case Passed");
+//			
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			Assert.assertTrue(false,"Test Case False");
+//			e.printStackTrace();
+//			e.getMessage();
+//			e.getCause();
+//			e.getStackTrace();
+//		}
+//       	
 	}
-	
-
-	
 	
 	@AfterMethod
 	public void tearDown() {
