@@ -16,12 +16,13 @@ public class LoginPage {
 
 	WebDriver driver;
 	Select select;
-
+	ExtentTest test;
 	
-	public LoginPage(WebDriver driver,Select select) {
+	public LoginPage(WebDriver driver,Select select,ExtentTest test) {
 
 		this.driver = driver;
 		this.select = select;
+		this.test = test;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -41,11 +42,15 @@ public class LoginPage {
 				username.sendKeys(uname);
 				password.sendKeys(pword);
 				submit.click();
+				
+				test.log(Status.PASS, "Logged In");
+				
 			} catch (Exception e) {				
 				e.printStackTrace();
+				test.log(Status.FAIL, "Couldnt Log In");
 			}
 			
-	    	return new Dashboard(driver, select);
+	    	return new Dashboard(driver, select,test);
 	}
 	
 }

@@ -10,15 +10,19 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 public class Dashboard {
 
 	WebDriver driver;
 	Select select;
-
-	public Dashboard(WebDriver driver,Select select) {
+	ExtentTest test;
+	public Dashboard(WebDriver driver,Select select,ExtentTest test) {
 
 		this.driver = driver;
 		this.select = select;
+		this.test = test;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -52,9 +56,10 @@ public class Dashboard {
 
 			try {
 				menu.click();
+				test.log(Status.PASS, "Clicked Menu Link");
 				Thread.sleep(5000);
 			} catch (Exception e) {
-				
+				test.log(Status.FAIL, "Couldnt Click Menu Link");
 				e.printStackTrace();
 			}
 	    		
@@ -66,11 +71,13 @@ public class Dashboard {
 		
 		try {
 			reset.click();
+			test.log(Status.PASS, "Clicked Reset Link");
 			Thread.sleep(5000);
 			closeMenu.click();
+			test.log(Status.PASS, "Clicked Close Link");
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			test.log(Status.FAIL, "Couldnt Click Reset or Close Link");
 			e.printStackTrace();
 		}
 		
@@ -84,8 +91,9 @@ public class Dashboard {
 					Select(driver.findElement(By.xpath("//select[@class='product_sort_container']")));
 
 			select.selectByValue("hilo");
+			test.log(Status.PASS, "Filter by High to Low");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			test.log(Status.FAIL, "Couldnt Filter by High to Low");
 			e.printStackTrace();
 		}
 			
@@ -96,9 +104,10 @@ public class Dashboard {
 		
 		try {
 			addCartselect.click();
+			test.log(Status.PASS, "Select the product");
 			Thread.sleep(500);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			test.log(Status.FAIL, "Couldnt Select the product");
 			e.printStackTrace();
 		}
 		
@@ -109,9 +118,9 @@ public class Dashboard {
 		
 		try {
 			Shoppicart.click();
-			System.out.println("clicked shopping cart");
+			test.log(Status.PASS, "Clicked the Shopping Cart");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			test.log(Status.FAIL, "Couldnt Click the Shopping Cart");
 			e.printStackTrace();
 		}
 		

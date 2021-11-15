@@ -46,7 +46,7 @@ public class Test {
 			@Optional("")String firstname,@Optional("")String lastname,@Optional("")String zipcode) throws InterruptedException {
 		
 		try {
-			LoginPage Login = new LoginPage(TestBase.driver,TestBase.select);
+			LoginPage Login = new LoginPage(TestBase.driver,TestBase.select,TestBase.Test);
 			
 			Dashboard sausedemoDashboad = Login.userLogin(username, password);
 			
